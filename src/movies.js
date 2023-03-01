@@ -11,13 +11,42 @@ function getAllDirectors(moviesArray) {
 }
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
-function howManyMovies(moviesArray) { }
+
+function howManyMovies(moviesArray) {
+    const moviesSteven = moviesArray.filter(function (el) {
+        if (el.director === 'Steven Spielberg' && el.genre.includes('Drama')) {
+            return el
+        }
+    })
+    return moviesSteven.length
+}
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-function scoresAverage(moviesArray) { }
+function scoresAverage(moviesArray) {
+    const scoresAverageReview = moviesArray.reduce(function (acc, review) {
+        if (!review.score) review.score = 0
+        return acc + review.score / moviesArray.length
+    }, 0);
+
+    return Number(scoresAverageReview.toFixed(2))
+
+}
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore(moviesArray) { }
+// Le drame est le genre qui se répète le plus sur notre réseau. Apparemment, les gens aiment le drame ! 👀
+// Créez une fonction dramaMoviesScore() qui reçoit un tableau en paramètre pour obtenir le score moyen
+// de tous les films dramatiques ! Voyons si c'est mieux que la moyenne générale.
+// Encore une fois, arrondi à 2 décimales !
+
+function dramaMoviesScore(moviesArray) {
+    const moviesDrama = moviesArray.filter(function (movie) {
+        return movie.genre.includes('Drama')
+    })
+
+    return scoresAverage(moviesDrama)
+
+}
+
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) { }
